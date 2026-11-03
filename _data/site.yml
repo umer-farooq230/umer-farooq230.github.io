@@ -1,0 +1,38 @@
+# ============================================================
+#  SITE KNOBS  (text and switches; the LOOK lives in assets/css/site.css)
+#  Restart `jekyll serve` after editing files in _data/ or _config.yml.
+# ============================================================
+
+# Name shown top-left, rendered like a shell path:  ~/umer-farooq
+brand: "umer-farooq"
+
+# Top navigation. Add, remove or reorder freely.
+nav:
+  - label: stories
+    url: /
+  - label: photos
+    url: /photos/
+  - label: about
+    url: /about/
+
+# Home page: the short line under your name, and the links row.
+intro: "I spend a good amount of time thinking about machines that learn, systems that think, and problems that are probably more complicated than they need to be."
+links:
+  - label: GitHub
+    url: https://github.com/umer-farooq230
+  - label: LinkedIn
+    url: https://www.linkedin.com/in/umer-farooq230/
+# How many of the latest pictures to show on the home page. Hidden while the photos folder is empty.
+home_photos: 6
+
+# Date format everywhere. %Y-%m-%d gives 2026-10-25.
+date_format: "%Y-%m-%d"
+
+
+# ------------------------------------------------------------
+#  PHOTOS PAGE
+#  Every picture inside this folder shows up on /photos/.
+#  Row heights and gaps are set in assets/css/site.css (--photo-row, --photo-gap).
+# ------------------------------------------------------------
+photos:
+  dir: "assets/photos"

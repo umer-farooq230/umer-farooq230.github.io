@@ -1,0 +1,16 @@
+{%- comment -%}
+  THE TITLE BLOCK: title + caption.
+  One file, used by the home list and by every story page.
+  Caller sets, before including it:
+    story         the post (or page) to show
+    story_level   'h1' for a story page, anything else for the home list
+  The caption comes from `caption:` in the story's front matter.
+{%- endcomment -%}
+<header class="story-head">
+  {% if story_level == 'h1' %}
+  <h1 class="story-title">{{ story.title | escape }}</h1>
+  {% else %}
+  <h2 class="story-title"><a href="{{ story.url | relative_url }}">{{ story.title | escape }}</a></h2>
+  {% endif %}
+  {% if story.caption %}<p class="story-caption">{{ story.caption | escape }}</p>{% endif %}
+</header>

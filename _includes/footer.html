@@ -1,0 +1,7 @@
+<footer class="site-footer">
+  <div class="wrap site-footer__row">
+    <span>&copy; {{ site.time | date: "%Y" }} {{ site.title }}</span>
+    <span>{{ site.data.site.footer }}</span>
+    <span>{% if site.github_username %}  <a href="https://github.com/{{ site.github_username }}">github</a>{% endif %}</span>
+  </div>
+</footer>

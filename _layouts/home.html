@@ -1,0 +1,39 @@
+---
+layout: default
+---
+<h1 class="home-name">{{ site.title }}</h1>
+<p class="home-tagline">{{ site.description }}</p>
+<p class="home-links">
+  {%- for l in site.data.site.links -%}
+    {% if l.url contains "://" %}<a href="{{ l.url }}">{{ l.label }}</a>{% else %}<a href="{{ l.url | relative_url }}">{{ l.label }}</a>{% endif %}{% unless forloop.last %} &middot; {% endunless %}
+  {%- endfor -%}
+</p>
+{% if site.data.site.intro %}<p class="home-intro">{{ site.data.site.intro }}</p>{% endif %}
+
+{{ content }}
+
+<hr>
+
+<h2 class="section-label">writing</h2>
+<ol class="story-list">
+  {% for post in site.posts %}
+  {% assign story = post %}
+  {% assign story_level = 'h2' %}
+  <li class="story">
+    <time class="story-date" datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: site.data.site.date_format }}</time>
+    <div class="story-main">
+      {% include story-head.html %}
+    </div>
+  </li>
+  {% endfor %}
+</ol>
+
+{% assign gallery_limit = site.data.site.home_photos %}
+{% assign gallery_quiet = true %}
+{% capture home_strip %}{% include gallery.html %}{% endcapture %}
+{% if shown > 0 %}
+<hr>
+<h2 class="section-label">photos</h2>
+{{ home_strip }}
+<p class="more"><a href="{{ '/photos/' | relative_url }}">all photos &rarr;</a></p>
+{% endif %}

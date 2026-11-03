@@ -1,0 +1,268 @@
+/* ==========================================================================
+   THE ONE STYLESHEET.  Everything about how the site looks is decided here.
+
+   1. CONTROL PANEL  – fonts, sizes, colors, width. Most edits happen here.
+   2. Everything below it just *uses* those values.
+
+   Text, links and nav live in _data/site.yml.
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. CONTROL PANEL
+   ========================================================================== */
+
+:root {
+  /* ---- Fonts (system stacks: nothing to download) ---- */
+  --font-body: Charter, "Bitstream Charter", "Sitka Text", Cambria, Georgia, serif;
+  --font-head: var(--font-body);
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+  /* ---- Sizes ---- */
+  --text-size:        1.125rem;  /* story body text            (18px) */
+  --name-size:        2.4rem;    /* your name on the home page */
+  --title-size-post:  2rem;      /* big title on a story page  */
+  --title-size-list:  1.15rem;   /* story titles in the home list */
+  --title-size-page:  2rem;      /* "about", "photos" headings */
+  --caption-size:     1rem;      /* the line under a title */
+  --meta-size:        0.8rem;    /* dates, nav, footer (monospace) */
+
+  /* ---- Layout ---- */
+  --page-width: 100%;            /* 100% = full width. Try 70rem to hold it back on huge screens. */
+  --gutter: 2rem;                /* space left and right of everything */
+  --radius: 3px;
+
+  /* ---- Photos ---- */
+  --photo-row: 16rem;            /* row height on the photos page */
+  --photo-row-home: 9rem;        /* row height of the strip on the home page */
+  --photo-gap: 0.4rem;           /* space between pictures (0 = none) */
+
+  /* ---- Colors: white page, near-black text, one olive green ---- */
+  --paper:        #ffffff;
+  --paper-raised: #f4f4f4;
+  --ink:          #1a1a1a;
+  --muted:        #6b6b6b;
+  --rule:         #e3e3e3;
+  --olive:        #556b2f;       /* links, small accents */
+  --olive-deep:   #3f5022;       /* link hover */
+  --code-bg:      #16181a;
+  --code-ink:     #d7dae0;
+}
+
+/* Colors: dark. Same names, new values. Delete this block to stay light always. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper:        #0e0e0e;
+    --paper-raised: #181818;
+    --ink:          #e8e8e8;
+    --muted:        #8f8f8f;
+    --rule:         #2a2a2a;
+    --olive:        #a9bf78;
+    --olive-deep:   #c6d99b;
+    --code-bg:      #060606;
+  }
+}
+
+
+/* ==========================================================================
+   2. BASE
+   ========================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-size);
+  line-height: 1.7;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+::selection { background: var(--olive); color: #fff; }
+
+main { flex: 1 0 auto; padding-top: 1rem; padding-bottom: 3rem; }
+
+a { color: var(--olive); text-underline-offset: 0.18em; text-decoration-thickness: 1px; }
+a:hover { color: var(--olive-deep); }
+:focus-visible { outline: 2px solid var(--olive); outline-offset: 3px; }
+
+img { max-width: 100%; height: auto; }
+
+hr { border: 0; border-top: 1px solid var(--rule); margin: 2rem 0; }
+
+.wrap {
+  width: 100%;
+  max-width: var(--page-width);
+  margin: 0 auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+.skip { position: absolute; left: -999px; top: 0; background: var(--ink); color: var(--paper); padding: 0.5rem 0.75rem; z-index: 10; }
+.skip:focus { left: 0; }
+
+
+/* ==========================================================================
+   3. HEADER / NAV / FOOTER
+   ========================================================================== */
+
+.site-header__row {
+  display: flex; flex-wrap: wrap; align-items: baseline;
+  justify-content: space-between; gap: 0.5rem 1.5rem;
+  padding-top: 1.1rem; padding-bottom: 0.4rem;
+}
+
+.brand { font-family: var(--font-mono); font-size: 0.95rem; font-weight: 600; color: var(--ink); text-decoration: none; }
+.brand:hover { color: var(--ink); }
+.brand__path { color: var(--olive); }
+.brand__cursor {
+  display: inline-block; width: 0.55em; height: 1.05em;
+  margin-left: 0.2em; vertical-align: -0.18em;
+  background: var(--olive);
+  animation: blink 1.1s steps(1) infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .brand__cursor { animation: none; } }
+
+.site-nav { font-family: var(--font-mono); font-size: var(--meta-size); display: flex; gap: 1.1rem; }
+.site-nav a { color: var(--muted); text-decoration: none; padding: 0.1rem 0; border-bottom: 1px solid transparent; }
+.site-nav a:hover { color: var(--ink); }
+.site-nav a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--olive); }
+
+.site-footer { border-top: 1px solid var(--rule); font-family: var(--font-mono); font-size: var(--meta-size); color: var(--muted); }
+.site-footer__row { display: flex; flex-wrap: wrap; gap: 0.35rem 1.5rem; justify-content: space-between; padding-top: 1.1rem; padding-bottom: 1.4rem; }
+.site-footer a { color: var(--muted); }
+.site-footer a:hover { color: var(--olive); }
+
+
+/* ==========================================================================
+   4. HOME PAGE
+   ========================================================================== */
+
+.home-name {
+  font-family: var(--font-head);
+  font-size: var(--name-size);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 1.5rem 0 0.3rem;
+}
+.home-name::after { content: ""; display: block; width: 2.5rem; height: 3px; background: var(--olive); margin-top: 0.7rem; }
+.home-tagline { margin: 0.6rem 0 0.7rem; color: var(--muted); }
+.home-links { margin: 0 0 1.4rem; font-family: var(--font-mono); font-size: 0.85rem; }
+.home-intro { margin: 0; }
+
+.section-label { font-family: var(--font-mono); font-size: var(--meta-size); font-weight: 500; color: var(--muted); margin: 0 0 0.6rem; }
+.section-label::before { content: "## "; color: var(--olive); }
+
+.more { margin: 0.8rem 0 0; font-family: var(--font-mono); font-size: var(--meta-size); }
+
+
+/* ==========================================================================
+   5. STORIES: title + caption (home list AND story pages)
+   ========================================================================== */
+
+.story-head { min-width: 0; }
+
+.story-title {
+  font-family: var(--font-head);
+  font-size: var(--title-size-list);
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 0;
+}
+.story-title a { color: var(--olive); text-decoration: none; }
+.story-title a:hover { color: var(--olive-deep); text-decoration: underline; }
+
+.story-caption { margin: 0.1rem 0 0; color: var(--muted); font-size: var(--caption-size); line-height: 1.5; }
+
+.story-list { list-style: none; margin: 0; padding: 0; }
+.story { display: grid; grid-template-columns: 6.5rem 1fr; gap: 0 1.25rem; padding: 0.7rem 0; }
+.story-date, .story-meta { font-family: var(--font-mono); font-size: var(--meta-size); color: var(--muted); padding-top: 0.2rem; }
+
+.story--full { display: block; padding: 0; }
+.story--full .story-meta { margin: 0 0 0.4rem; padding: 0; }
+.story--full .story-title { font-size: var(--title-size-post); font-weight: 700; line-height: 1.2; letter-spacing: -0.01em; }
+.story--full .story-caption { font-size: 1.1rem; margin-top: 0.5rem; }
+.story--full .story-head { padding-bottom: 1.4rem; margin-bottom: 1.6rem; border-bottom: 1px solid var(--rule); }
+
+.post-nav {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+  margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid var(--rule);
+  font-size: 0.95rem; line-height: 1.4;
+}
+.post-nav a { text-decoration: none; display: block; }
+.post-nav span { display: block; font-family: var(--font-mono); font-size: var(--meta-size); color: var(--muted); margin-bottom: 0.2rem; }
+.post-nav__next { grid-column: 2; text-align: right; }
+.post-nav__prev { grid-column: 1; }
+
+
+/* ==========================================================================
+   6. PROSE: the body of stories and plain pages
+   ========================================================================== */
+
+.page-title { font-size: var(--title-size-page); line-height: 1.2; margin: 1rem 0 1.25rem; letter-spacing: -0.01em; }
+
+.prose > :first-child { margin-top: 0; }
+.prose p, .prose ul, .prose ol, .prose figure, .prose pre, .prose blockquote { margin: 0 0 1.2em; }
+.prose h2, .prose h3, .prose h4 { font-family: var(--font-head); line-height: 1.3; margin: 2em 0 0.6em; }
+.prose h2 { font-size: 1.55rem; }
+.prose h3 { font-size: 1.35rem; }
+.prose h4 { font-size: 1.12rem; }
+.prose ul, .prose ol { padding-left: 1.4em; }
+.prose li { margin-bottom: 0.3em; }
+.prose hr { margin: 2.2rem 0; }
+
+.prose figure { margin-left: 0; margin-right: 0; }
+.prose figure img { display: block; margin: 0 auto; }
+.prose figcaption { font-family: var(--font-mono); font-size: var(--meta-size); color: var(--muted); text-align: center; margin-top: 0.5rem; line-height: 1.4; }
+
+.prose blockquote { border-left: 3px solid var(--olive); padding: 0.1rem 0 0.1rem 1.1rem; color: var(--muted); font-style: italic; }
+
+.prose code { font-family: var(--font-mono); font-size: 0.86em; background: var(--paper-raised); padding: 0.05em 0.35em; border-radius: var(--radius); }
+.prose pre {
+  background: var(--code-bg); color: var(--code-ink);
+  font-family: var(--font-mono); font-size: 0.85rem; line-height: 1.55;
+  padding: 1rem 1.1rem; border-radius: var(--radius); overflow-x: auto;
+}
+.prose pre code { background: none; padding: 0; font-size: inherit; color: inherit; }
+
+.prose table { border-collapse: collapse; width: 100%; font-size: 0.95rem; }
+.prose th, .prose td { border: 1px solid var(--rule); padding: 0.4rem 0.6rem; text-align: left; }
+
+
+/* ==========================================================================
+   7. PHOTOS: rows that fill the full width, no gaps at the ends
+   ========================================================================== */
+
+ul.gallery { display: flex; flex-wrap: wrap; gap: var(--photo-gap); margin: 0; padding: 0; list-style: none; }
+ul.gallery li { height: var(--photo-row); flex-grow: 1; margin: 0; }
+ul.gallery--home li { height: var(--photo-row-home); }
+.gallery a { display: block; height: 100%; }
+.gallery img {
+  display: block;
+  max-height: 100%;
+  min-width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: var(--paper-raised);
+}
+.gallery-empty { color: var(--muted); font-size: 1rem; }
+.gallery-empty code { font-family: var(--font-mono); font-size: 0.88em; }
+
+
+/* ==========================================================================
+   8. SMALL SCREENS
+   ========================================================================== */
+
+@media (max-width: 40rem) {
+  :root { --gutter: 1.25rem; --name-size: 2rem; --title-size-post: 1.65rem; --title-size-page: 1.65rem; --text-size: 1.05rem; --photo-row: 7.5rem; --photo-row-home: 6rem; }
+  .story { grid-template-columns: 1fr; padding: 0.8rem 0; }
+  .story-date { padding: 0 0 0.1rem; }
+  .post-nav { grid-template-columns: 1fr; }
+  .post-nav__next { grid-column: 1; text-align: left; }
+}

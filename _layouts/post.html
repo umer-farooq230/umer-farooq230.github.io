@@ -1,0 +1,17 @@
+---
+layout: default
+---
+<article class="story story--full">
+  <p class="story-meta"><time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: site.data.site.date_format }}</time></p>
+  {% assign story = page %}
+  {% assign story_level = 'h1' %}
+  {% include story-head.html %}
+  <div class="prose">
+    {{ content }}
+  </div>
+</article>
+
+<nav class="post-nav" aria-label="more stories">
+  {% if page.previous %}<a class="post-nav__prev" href="{{ page.previous.url | relative_url }}"><span>&larr; older</span>{{ page.previous.title | escape }}</a>{% endif %}
+  {% if page.next %}<a class="post-nav__next" href="{{ page.next.url | relative_url }}"><span>newer &rarr;</span>{{ page.next.title | escape }}</a>{% endif %}
+</nav>

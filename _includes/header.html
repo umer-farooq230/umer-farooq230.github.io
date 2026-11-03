@@ -1,0 +1,13 @@
+<header class="site-header">
+  <div class="wrap site-header__row">
+    <a class="brand" href="{{ '/' | relative_url }}"><span class="brand__path">~/</span>{{ site.data.site.brand }}<span class="brand__cursor" aria-hidden="true"></span></a>
+    <nav class="site-nav" aria-label="main">
+      {% for item in site.data.site.nav %}
+        {% assign here = false %}
+        {% if page.url == item.url %}{% assign here = true %}{% endif %}
+        {% if page.layout == 'post' and item.url == '/' %}{% assign here = true %}{% endif %}
+        <a href="{{ item.url | relative_url }}"{% if here %} aria-current="page"{% endif %}>{{ item.label }}</a>
+      {% endfor %}
+    </nav>
+  </div>
+</header>

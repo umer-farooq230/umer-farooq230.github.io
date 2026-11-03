@@ -1,0 +1,28 @@
+{%- comment -%}
+  PHOTO ROWS. Lists the pictures in the folder set in _data/site.yml (photos.dir),
+  newest file name first. Used by the photos page (all of them) and the home page (a few).
+  Caller sets, before including it:
+    gallery_limit   optional: show only this many
+    gallery_quiet   optional: true = print nothing at all when there are no pictures
+  Afterwards `shown` holds how many pictures were found.
+{%- endcomment -%}
+{%- assign gfiles = site.static_files | sort: "name" | reverse -%}
+{%- assign shown = 0 -%}
+{%- capture gallery_items -%}
+{%- for f in gfiles -%}
+  {%- if gallery_limit and shown >= gallery_limit -%}{%- break -%}{%- endif -%}
+  {%- if f.relative_path contains site.data.site.photos.dir -%}
+    {%- assign ext = f.extname | downcase -%}
+    {%- if ext == ".jpg" or ext == ".jpeg" or ext == ".png" or ext == ".webp" or ext == ".gif" -%}
+      {%- assign shown = shown | plus: 1 %}
+  <li><a href="{{ f.path | relative_url }}"><img src="{{ f.path | relative_url }}" alt="" decoding="async"></a></li>
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- endcapture -%}
+{%- if shown > 0 -%}
+<ul class="gallery{% if gallery_limit %} gallery--home{% endif %}">{{ gallery_items }}
+</ul>
+{%- elsif gallery_quiet != true -%}
+<p class="gallery-empty">Nothing here yet. Add pictures to <code>{{ site.data.site.photos.dir }}/</code> on GitHub and they show up on this page.</p>
+{%- endif -%}
