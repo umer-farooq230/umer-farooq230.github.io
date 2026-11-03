@@ -38,30 +38,17 @@
   --photo-gap: 0.4rem;           /* space between pictures (0 = none) */
 
   /* ---- Colors: white page, near-black text, one olive green ---- */
-  --paper:        #ffffff;
+  --paper:        #fffffe;
   --paper-raised: #f4f4f4;
-  --ink:          #1a1a1a;
+  --ink:          #212c11;
   --muted:        #6b6b6b;
   --rule:         #e3e3e3;
-  --olive:        #556b2f;       /* links, small accents */
+  --olive:        #2b3619;       /* links, small accents */
   --olive-deep:   #3f5022;       /* link hover */
   --code-bg:      #16181a;
   --code-ink:     #d7dae0;
 }
 
-/* Colors: dark. Same names, new values. Delete this block to stay light always. */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --paper:        #0e0e0e;
-    --paper-raised: #181818;
-    --ink:          #e8e8e8;
-    --muted:        #8f8f8f;
-    --rule:         #2a2a2a;
-    --olive:        #a9bf78;
-    --olive-deep:   #c6d99b;
-    --code-bg:      #060606;
-  }
-}
 
 
 /* ==========================================================================
