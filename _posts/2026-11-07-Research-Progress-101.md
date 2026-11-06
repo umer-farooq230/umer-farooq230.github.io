@@ -1,8 +1,11 @@
 ---
 layout: post
 title: "Research Progress 01: Detecting Market Regimes in KSE-100 with Few-short learning"
-date: 2026-11-07
-categories: research
+caption: "Introducing my research project: problem, methodology, existing work"
+tags:
+  - Hidden Markov Models
+  - neural-networks
+  - deep-learning
 ---
 
 # Research Progress 101
