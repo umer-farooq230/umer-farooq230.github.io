@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Research Progress 01: Market Regime Detection"
-date: 2026-11-07
+date: 2026-11-06
 categories: research
 ---
 
