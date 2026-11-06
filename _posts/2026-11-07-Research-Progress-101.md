@@ -1,4 +1,9 @@
-
+---
+layout: post
+title: "Research Progress 01: Detecting Market Regimes in KSE-100 with Few-short learning"
+date: 2026-11-07
+categories: research
+---
 
 # Research Progress 101
 
