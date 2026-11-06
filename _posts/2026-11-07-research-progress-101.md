@@ -1,7 +1,8 @@
 ---
 layout: post
-title: "Research Progress 01: Market Regime Detection"
+title: "Research Progress 01: Market regime detection using few-shot in KSE-100"
 date: 2026-11-06
+caption: "Introducing a new research project: research question, motivation, methodology"
 categories: research
 ---
 
