@@ -7,7 +7,7 @@ categories: research
 
 # Research Progress 101
 
- **Can We Detect Market Regimes Without Looking Into the Future?**
+ #### Can We Detect Market Regimes Without Looking Into the Future?
 
 I've been working on a question around market regimes, particularly how we identify changes in market behaviour without having access to future information.
 
@@ -29,11 +29,11 @@ A live system only has access to information available up to the current day.
 
 This led me to a more interesting question:
 
-**How much labelled historical data does a relatively simple classifier need to identify market regimes in real time, and how late does it detect an actual regime change?**
+How much labelled historical data does a relatively simple classifier need to identify market regimes in real time, and how late does it detect an actual regime change?
 
 I'm also investigating whether incorporating news sentiment can improve detection speed.
 
-**Why detection delay matters more than accuracy**
+#### Why detection delay matters more than accuracy
 
 One thing I wanted to avoid was building another model that looks good primarily because of its accuracy score.
 
@@ -133,7 +133,7 @@ I'll be investigating the sensitivity of the results to this assumption using a 
 
 These decisions are important because the objective isn't to make a particular model look successful. It's to understand whether the underlying approach holds up under realistic constraints.
 
-**What's next?**
+#### What's next?
 
 The next stage is primarily about establishing the experimental foundation.
 
@@ -151,6 +151,6 @@ For now, the most useful progress has been understanding the data, identifying p
 
 The central question remains:
 
-**Can a relatively simple model learn to recognise changing market regimes with very little labelled history, without relying on information from the future?**
+Can a relatively simple model learn to recognise changing market regimes with very little labelled history, without relying on information from the future?
 
 That's what I'm trying to find out.
